@@ -51,3 +51,13 @@ type NilaiDataUpdate struct {
 type NilaiPayloadDelete struct {
 	Param []Nilai `json:"param" binding:"required"`
 }
+
+type User struct {
+	entity.User
+	entity.StandardKey
+	entity.Time
+}
+type UserInsertData struct {
+	Data []User `json:"data" binding:"required"`
+	User string
+}

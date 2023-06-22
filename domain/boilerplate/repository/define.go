@@ -28,6 +28,7 @@ two lines below is the const of table name, please change the value of this cons
 */
 const MYSQL_TABLE = "boilerplate"
 const MYSQL_IDENTITAS = "identitas_sekolah"
+const MYSQL_USER = "user"
 const ORACLE_TABLE = "boilerplate"
 
 /*

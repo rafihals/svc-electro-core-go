@@ -9,6 +9,15 @@ func (boilerplate boilerplateUsecase) GetAllCategory(param map[string]interface{
 	return
 }
 
+//testing mysql
+
+func (boilerplate boilerplateUsecase) GetAllUser(param map[string]interface{}) (response []valueobject.User, err error) {
+	response, err = boilerplate.mysqlRepository.GetAllUser(param)
+	return
+}
+
+//testing mysql
+
 func (boilerplate boilerplateUsecase) UpdateCategory(payload valueobject.BoilerplatePayloadUpdate) (err error) {
 	for i := range payload.Data {
 		payload.Data[i].Body.UserUpdate = payload.User

@@ -18,3 +18,9 @@ type Nilai struct {
 	BhsInggris string `json:"bhs_inggris"`
 	Mtk        string `json:"mtk"`
 }
+
+type User struct {
+	IDuser   string `json:"id"`
+	Username string `json:"user_name"`
+	Password string `json:"password"`
+}

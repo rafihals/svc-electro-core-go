@@ -48,6 +48,51 @@ func (db *mysqlBoilerplateRepository) GetAllCategory(param map[string]interface{
 	return
 }
 
+// testing mysql
+
+func (db *mysqlBoilerplateRepository) GetAllUser(param map[string]interface{}) (response []valueobject.User, err error) {
+	var result valueobject.User
+
+	builder := database.New(MYSQL, MYSQL_USER, SELECT)
+
+	builder.OnSelect = database.OnSelect{
+		Column: []string{"id", "user_name", "password"},
+		Where:  param,
+	}
+
+	err = builder.QueryBuilder()
+
+	if err != nil {
+		return
+	}
+
+	query, err := db.sqlDB.Query(builder.Result.Query, builder.Result.Value...)
+
+	if err != nil {
+		return
+	}
+
+	defer query.Close()
+
+	for query.Next() {
+		err = query.Scan(
+			&result.IDuser,
+			&result.Username,
+			&result.Password,
+		)
+
+		if err != nil {
+			return
+		}
+
+		response = append(response, result)
+	}
+
+	return
+}
+
+//testing mysql
+
 func (db *mysqlBoilerplateRepository) UpdateCategory(param map[string]interface{}, data map[string]interface{}) (builder database.QueryConfig, err error) {
 	builder = database.New(MYSQL, MYSQL_IDENTITAS, UPDATE)
 
