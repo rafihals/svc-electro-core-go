@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-
 	"database/sql"
 	"log"
+	"net/http"
 	"os"
+
+	"github.com/gin-gonic/gin"
 
 	"svc-boilerplate-golang/utils/database"
 
@@ -25,6 +26,9 @@ func main() {
 	_boilerplateHttpDeliver.NewBoilerplateHttpHandler(boilerplateUsecase, routers)
 
 	routers.Run(":" + os.Getenv("PORT"))
+	mux := http.NewServeMux()
+	mux.HandleFunc("/plm/cors", Cors)
+	http.ListenAndServe(":80", mux)
 }
 
 func ConnectMySQL() (mysql *sql.DB) {
@@ -45,4 +49,11 @@ func ConnectOracle() (oracle *sql.DB) {
 	}
 
 	return
+}
+
+func Cors(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=ascii")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type,access-control-allow-origin, access-control-allow-headers")
+	w.Write([]byte("Hello, World!"))
 }
