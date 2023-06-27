@@ -22,6 +22,7 @@ func NewBoilerplateHttpHandler(boilerplate boilerplate.Usecase, httpRouter *gin.
 	public.GET("/boilerplate/:uuid", handler.GetByUUID)
 	public.POST("/boilerplate", handler.Store)
 	public.POST("/boilerplate/store-category", handler.StoreCategory)
+	public.POST("/boilerplate/store-user", handler.StoreUser)
 	public.PUT("/boilerplate", handler.Update)
 	public.PUT("/boilerplate/update-category", handler.UpdateCategory)
 	public.DELETE("/boilerplate", handler.Delete)

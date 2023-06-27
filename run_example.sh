@@ -1,6 +1,6 @@
 export DB_DRIVERNAME="mysql"
 export DB_USERNAME="root"
-export DB_NAME="db_btm"
+export DB_NAME="sakila"
 export DB_PASSWORD="yanto"
 export DB_HOST="localhost"
 export DB_PORT="3306"

@@ -20,7 +20,7 @@ type Nilai struct {
 }
 
 type User struct {
-	IDuser   string `json:"id"`
-	Username string `json:"user_name"`
+	IDuser   string `json:"no"`
+	Username string `json:"username"`
 	Password string `json:"password"`
 }

@@ -49,6 +49,29 @@ func (handler *HttpBoilerplateHandler) GetAllUser(ctx *gin.Context) {
 	message.ReturnOk(ctx, response, param)
 }
 
+func (handler *HttpBoilerplateHandler) StoreUser(ctx *gin.Context) {
+	var payload valueobject.UserInsertData
+
+	err := ctx.ShouldBindJSON(&payload)
+
+	if err != nil {
+		message.ReturnBadRequest(ctx, err.Error(), config.ERROR_BIND_JSON)
+		return
+	}
+
+	payload.User = ctx.Request.Header.Get("X-Member")
+
+	feedback, err := handler.boilerplateUsecase.StoreUser(payload)
+
+	if err != nil {
+		message.ReturnInternalServerError(ctx, err.Error())
+		log.Println(err.Error())
+		return
+	}
+
+	message.ReturnSuccessInsert(ctx, feedback.Data)
+}
+
 //testing mysql
 
 func (handler *HttpBoilerplateHandler) UpdateCategory(ctx *gin.Context) {

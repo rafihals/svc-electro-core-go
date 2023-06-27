@@ -49,6 +49,22 @@ func (boilerplate boilerplateUsecase) StoreCategory(payload valueobject.Boilerpl
 	return payload, boilerplate.mysqlRepository.Exec(queryConfig...)
 }
 
+func (boilerplate boilerplateUsecase) StoreUser(payload valueobject.UserInsertData) (valueobject.UserInsertData, error) {
+	for i := range payload.Data {
+		payload.Data[i].ID, _ = boilerplate.mysqlRepository.GenerateID()
+		// payload.Data[i].UUID, _ = boilerplate.mysqlRepository.GenerateUUID()
+		// payload.Data[i].UserInput = payload.User
+	}
+
+	queryConfig, err := boilerplate.ProcessStoreUser(payload)
+
+	if err != nil {
+		return payload, err
+	}
+
+	return payload, boilerplate.mysqlRepository.Exec(queryConfig...)
+}
+
 func (boilerplate boilerplateUsecase) DeleteCategory(payload valueobject.BoilerplatePayloadDelete) (err error) {
 	queryConfig, err := boilerplate.ProcessDeleteCategory(payload)
 

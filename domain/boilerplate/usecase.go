@@ -21,6 +21,7 @@ type Usecase interface {
 
 	Store(payload valueobject.BoilerplatePayloadInsert) (valueobject.BoilerplatePayloadInsert, error)
 	StoreCategory(payload valueobject.BoilerplatePayloadInsert) (valueobject.BoilerplatePayloadInsert, error)
+	StoreUser(payload valueobject.UserInsertData) (valueobject.UserInsertData, error)
 	Update(payload valueobject.BoilerplatePayloadUpdate) error
 	UpdateCategory(payload valueobject.BoilerplatePayloadUpdate) error
 	Delete(payload valueobject.BoilerplatePayloadDelete) error

@@ -56,7 +56,7 @@ func (db *mysqlBoilerplateRepository) GetAllUser(param map[string]interface{}) (
 	builder := database.New(MYSQL, MYSQL_USER, SELECT)
 
 	builder.OnSelect = database.OnSelect{
-		Column: []string{"id", "user_name", "password"},
+		Column: []string{"no", "username", "password"},
 		Where:  param,
 	}
 
@@ -88,6 +88,18 @@ func (db *mysqlBoilerplateRepository) GetAllUser(param map[string]interface{}) (
 		response = append(response, result)
 	}
 
+	return
+}
+
+func (db *mysqlBoilerplateRepository) StoreUser(column []string, data []interface{}) (builder database.QueryConfig, err error) {
+	builder = database.New(MYSQL, MYSQL_USER, INSERT)
+
+	builder.OnInsert = database.OnInsert{
+		Column: column,
+		Data:   data,
+	}
+
+	err = builder.QueryBuilder()
 	return
 }
 

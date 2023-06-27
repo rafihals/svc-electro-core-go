@@ -81,3 +81,39 @@ func (boilerplate boilerplateUsecase) ProcessDeleteCategory(payload valueobject.
 	}
 	return
 }
+
+// test
+func (boilerplate boilerplateUsecase) ProcessStoreUser(payload valueobject.UserInsertData) (queryConfig []database.QueryConfig, err error) {
+	for _, x := range payload.Data {
+		/**
+		add data you wanted to insert on this interface{}...
+		*/
+		data := []interface{}{
+			[]interface{}{
+				x.IDuser,
+				x.Username,
+				x.Password,
+			},
+		}
+
+		/**
+		column on data and this line should have same order
+		*/
+		column := []string{
+			"no",
+			"username",
+			"password",
+		}
+
+		queryInsert, err := boilerplate.mysqlRepository.StoreUser(column, data)
+
+		if err != nil {
+			return queryConfig, err
+		}
+
+		queryConfig = append(queryConfig, queryInsert)
+	}
+	return
+}
+
+//
