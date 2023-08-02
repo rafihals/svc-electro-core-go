@@ -1,0 +1,7 @@
+configuration:
+  # Wajib mengubah service_name sebelum pertama kali menjalankan goboo
+  service_name: svc-boilerplate-golang
+  domains:
+  - # add new domain name here
+only_goboo_can_write: 
+  service_name: svc-boilerplate-golang
