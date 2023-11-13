@@ -15,6 +15,7 @@ why there's only one usecase interface while there can more than one repository 
 type Usecase interface {
 	GetAll(param map[string]interface{}) ([]valueobject.Boilerplate, error)
 	GetAllCategory(param map[string]interface{}) ([]valueobject.Boilerplate, error)
+	GetAllEvaluation(param map[string]interface{}) ([]valueobject.ScholarshipEvaluation, error)
 
 	GetOne(param map[string]interface{}) (valueobject.Boilerplate, error)
 

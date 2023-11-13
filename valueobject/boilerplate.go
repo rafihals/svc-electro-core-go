@@ -26,3 +26,28 @@ type BoilerplateDataUpdate struct {
 type BoilerplatePayloadDelete struct {
 	Param []Boilerplate `json:"param" binding:"required"`
 }
+
+type ScholarshipEvaluation struct {
+	entity.ScholarshipEvaluation
+	entity.StandardKey
+	entity.Time
+}
+
+type ScholarshipPayloadInsert struct {
+	Data []ScholarshipEvaluation `json:"data" binding:"required"`
+	User string
+}
+
+type ScholarshipPayloadUpdate struct {
+	Data []ScholarshipDataUpdate `json:"data" binding:"required"`
+	User string
+}
+
+type ScholarshipDataUpdate struct {
+	Param ScholarshipEvaluation `json:"param" binding:"required"`
+	Body  ScholarshipEvaluation `json:"body" binding:"required"`
+}
+
+type ScholarshipPayloadDelete struct {
+	Param []ScholarshipEvaluation `json:"param" binding:"required"`
+}

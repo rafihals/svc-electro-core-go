@@ -1,9 +1,9 @@
 export DB_DRIVERNAME="mysql"
 export DB_USERNAME="root"
-export DB_PASSWORD="river"
+export DB_PASSWORD="12345"
 export DB_HOST="localhost"
-export DB_PORT="3307"
-export DB_NAME="sakila"
+export DB_PORT="3306"
+export DB_NAME="pengaturan_beasiswa"
 
 # export ORACLE_DB_DRIVERNAME="godror"
 # export ORACLE_DB_USERNAME="keubank"
