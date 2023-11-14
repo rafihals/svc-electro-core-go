@@ -17,9 +17,18 @@ import (
 func main() {
 	routers := gin.Default()
 
-	mysql := ConnectMySQL()
-	//orcl:= ConnectOracle()
+	routers.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "x-menu, x-app, Content-Type, Authorization")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
 
+	mysql := ConnectMySQL()
 	boilerplateMysqlRepository := _boilerplateRepository.NewMysqlBoilerplateRepository(mysql)
 	boilerplateUsecase := _boilerplateUsecase.NewBoilerplateUsecase(boilerplateMysqlRepository)
 	_boilerplateHttpDeliver.NewBoilerplateHttpHandler(boilerplateUsecase, routers)
