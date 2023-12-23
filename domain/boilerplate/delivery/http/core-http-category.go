@@ -91,7 +91,7 @@ func (handler *HttpBoilerplateHandler) DeleteCategory(ctx *gin.Context) {
 		message.ReturnInternalServerError(ctx, err.Error())
 		log.Println(err.Error())
 		return
-	}
+	}																
 
 	message.ReturnSuccessDelete(ctx)
 }
