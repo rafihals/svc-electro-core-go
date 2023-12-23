@@ -95,3 +95,21 @@ func (handler *HttpBoilerplateHandler) DeleteCategory(ctx *gin.Context) {
 
 	message.ReturnSuccessDelete(ctx)
 }
+
+func (handler *HttpBoilerplateHandler) GetAllUser(ctx *gin.Context) {
+	var param = map[string]interface{}{
+		"AND": map[string]interface{}{}}
+	response, err := handler.boilerplateUsecase.GetAllUser(param)
+
+	if err != nil {
+		if err.Error() == config.ERROR_BIND_JSON {
+			message.ReturnOk(ctx, make(map[string]interface{}), param)
+			return
+		}
+		message.ReturnInternalServerError(ctx, err.Error())
+		log.Println(err.Error())
+		return
+	}
+
+	message.ReturnOk(ctx, response, param)
+}

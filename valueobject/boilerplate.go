@@ -8,6 +8,12 @@ type Boilerplate struct {
 	entity.Time
 }
 
+type User struct {
+	entity.User
+	entity.StandardKey
+	entity.Time
+}
+
 type BoilerplatePayloadInsert struct {
 	Data []Boilerplate `json:"data" binding:"required"`
 	User string
@@ -51,3 +57,4 @@ type ScholarshipDataUpdate struct {
 type ScholarshipPayloadDelete struct {
 	Param []ScholarshipEvaluation `json:"param" binding:"required"`
 }
+

@@ -11,7 +11,7 @@ func (db *mysqlBoilerplateRepository) GetAllCategory(param map[string]interface{
 	builder := database.New(MYSQL, MYSQL_CATEGORY, SELECT)
 
 	builder.OnSelect = database.OnSelect{
-		Column: []string{"id", "name",},
+		Column: []string{"category_id", "name"},
 		Where:  param,
 	}
 
@@ -77,5 +77,45 @@ func (db *mysqlBoilerplateRepository) DeleteCategory(param map[string]interface{
 	}
 
 	err = builder.QueryBuilder()
+	return
+}
+
+func (db *mysqlBoilerplateRepository) GetAllUser(param map[string]interface{}) (response []valueobject.User, err error) {
+	var result valueobject.User
+
+	builder := database.New(MYSQL, MYSQL_USER, SELECT)
+
+	builder.OnSelect = database.OnSelect{
+		Column: []string{"ID_user", "User"},
+		Where:  param,
+	}
+
+	err = builder.QueryBuilder()
+
+	if err != nil {
+		return
+	}
+
+	query, err := db.sqlDB.Query(builder.Result.Query, builder.Result.Value...)
+
+	if err != nil {
+		return
+	}
+
+	defer query.Close()
+
+	for query.Next() {
+		err = query.Scan(
+			&result.ID_user,
+			&result.User,
+		)
+
+		if err != nil {
+			return
+		}
+
+		response = append(response, result)
+	}
+
 	return
 }

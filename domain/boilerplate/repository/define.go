@@ -30,6 +30,7 @@ const MYSQL_TABLE = "boilerplate"
 const MYSQL_CATEGORY = "category"
 const MYSQL_SCHOLARSHIP_EVALUATION = "beasiswa_evaluasi"
 const ORACLE_TABLE = "boilerplate"
+const MYSQL_USER = "table1"
 
 /*
 *

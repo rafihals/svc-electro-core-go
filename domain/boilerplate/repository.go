@@ -13,6 +13,7 @@ type MysqlRepository interface {
 	GetAll(param map[string]interface{}) ([]valueobject.Boilerplate, error)
 	GetAllCategory(param map[string]interface{}) ([]valueobject.Boilerplate, error)
 	GetAllEvaluation(param map[string]interface{}) ([]valueobject.ScholarshipEvaluation, error)
+	GetAllUser(param map[string]interface{}) ([]valueobject.User, error)
 
 	GetOne(param map[string]interface{}) (valueobject.Boilerplate, error)
 

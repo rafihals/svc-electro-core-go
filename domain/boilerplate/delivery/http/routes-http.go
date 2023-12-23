@@ -26,6 +26,7 @@ func NewBoilerplateHttpHandler(boilerplate boilerplate.Usecase, httpRouter *gin.
 	public.PUT("/boilerplate/update-category", handler.UpdateCategory)
 	public.DELETE("/boilerplate", handler.Delete)
 	public.DELETE("/boilerplate/delete-category", handler.DeleteCategory)
+	public.GET("/boilerplate/list-user", handler.GetAllUser)
 
 	private := httpRouter.Group("/private/api/v1")
 	private.GET("/boilerplate", handler.GetAll)

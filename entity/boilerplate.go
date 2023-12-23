@@ -6,7 +6,7 @@ type BoilerplateKey struct {
 
 type Boilerplate struct {
 	BoilerplateKey
-	CategoryID string `json:"category_id"`
+	CategoryID int `json:"category_id"`
 	Name       string `json:"name"`
 }
 type ScholarshipEvaluation struct {
@@ -16,4 +16,9 @@ type ScholarshipEvaluation struct {
 	Semester        string `json:"semester"`
 	Kategori        string `json:"kategori"`
 	NilaiMinimal    string `json:"nilai_minimal"`
+}
+
+type User struct {
+	ID_user string `json:"ID_user"`
+	User       string `json:"User"`
 }

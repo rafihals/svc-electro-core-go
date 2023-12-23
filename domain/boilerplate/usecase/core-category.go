@@ -49,3 +49,8 @@ func (boilerplate boilerplateUsecase) DeleteCategory(payload valueobject.Boilerp
 
 	return boilerplate.mysqlRepository.Exec(queryConfig...)
 }
+
+func (boilerplate boilerplateUsecase) GetAllUser(param map[string]interface{}) (response []valueobject.User, err error) {
+	response, err = boilerplate.mysqlRepository.GetAllUser(param)
+	return
+}
